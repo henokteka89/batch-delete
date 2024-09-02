@@ -1,0 +1,15 @@
+DECLARE @BatchSize INT = 100000;  -- Define the size of each chunk
+DECLARE @RowsAffected INT = 1;    -- Initialize variable to track the number of rows affected
+
+WHILE @RowsAffected > 0
+BEGIN
+    -- Delete the top 100,000 rows in each iteration
+    DELETE TOP (@BatchSize) FROM YourTable
+    WHERE SomeCondition = 'Value';  -- Replace with your actual condition
+
+    -- Check how many rows were affected by the delete
+    SET @RowsAffected = @@ROWCOUNT;
+
+    -- Optionally, print or log the number of rows deleted in each iteration
+    PRINT CAST(@RowsAffected AS VARCHAR(10)) + ' rows deleted';
+END
