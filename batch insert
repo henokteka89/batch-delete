@@ -1,18 +1,12 @@
--- Assuming the table structure is as follows
-CREATE TABLE YourTable (
-    ID INT IDENTITY(1,1) PRIMARY KEY
-    -- Add other columns if needed
-);
-
--- Initialize variables
-DECLARE @counter INT = 1;
-
--- Start the WHILE loop
-WHILE @counter <= 10000
+-- Initialize the variables
+DECLARE @from INT = 5;
+ -- Start the WHILE loop
+WHILE @from <= 5000
 BEGIN
-    -- Insert a new row
-    INSERT INTO YourTable DEFAULT VALUES;
+    -- Insert a new row with the incrementing value
+    INSERT INTO Testsnapshot (id)
+    VALUES (@from);
     
-    -- Increment the counter
-    SET @counter = @counter + 1;
+    -- Increment the counter and the value to be inserted
+    SET @from = @from + 1;
 END;
