@@ -1,0 +1,18 @@
+-- Assuming the table structure is as follows
+CREATE TABLE YourTable (
+    ID INT IDENTITY(1,1) PRIMARY KEY
+    -- Add other columns if needed
+);
+
+-- Initialize variables
+DECLARE @counter INT = 1;
+
+-- Start the WHILE loop
+WHILE @counter <= 10000
+BEGIN
+    -- Insert a new row
+    INSERT INTO YourTable DEFAULT VALUES;
+    
+    -- Increment the counter
+    SET @counter = @counter + 1;
+END;
