@@ -1,0 +1,17 @@
+DECLARE @RowsAffected INT = 1;  -- Initialize a variable to track the number of deleted rows
+
+WHILE @RowsAffected > 0
+BEGIN
+    ;WITH CTED AS (
+        SELECT TOP 10000 * 
+        FROM [StackOverflow2013].[dbo].[Posts]
+        WHERE ID > 5000000
+    )
+    DELETE FROM CTED;
+
+    -- Check how many rows were deleted in this iteration
+    SET @RowsAffected = @@ROWCOUNT;
+
+    -- Optional: Add a delay between iterations if needed to avoid locking
+    -- WAITFOR DELAY '00:00:02'; -- 2-second delay
+END;
